@@ -1,13 +1,18 @@
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
 
-$primary-color: #fe2c55;
+:root {
+    --default-layout-header-height: 60px;
+    --default-layout-width: 1150px;
+}
 
 html {
     font-size: 62.5%;
 }
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 

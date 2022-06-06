@@ -1,7 +1,7 @@
 import React from 'react'
 import Header from '~/conponents/Layout/components/Header';
 
-function DefaultLayout({ children }) {
+function HeaderLayout({ children }) {
   return (
     <div>
         <Header/>
@@ -14,4 +14,4 @@ function DefaultLayout({ children }) {
   )
 }
 
-export default DefaultLayout
+export default HeaderLayout
