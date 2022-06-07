@@ -4,6 +4,7 @@
 :root {
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
+    --text-color: #333;
 }
 
 html {
@@ -21,4 +22,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 1.6rem;
     line-height: 1.5;
+    color: var(--text-color);
+}
+
+a[href] {
+    color: var(--text-color);
+    text-decoration: none;
 }
