@@ -11,6 +11,7 @@ import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { Wrapper as PopperWrapper } from "~/conponents/Popper";
 import AccountItem from "~/conponents/AccountItem";
+import Button from "~/conponents/Button";
 
 const cx = classNames.bind(styles);
 
@@ -141,7 +142,11 @@ function Header() {
           </div>
         </Tippy>
 
-        <div className={cx("headerRightContainer")}></div>
+        <div className={cx("headerRightContainer")}>
+          <Button primary>
+            Đăng nhập
+          </Button>
+        </div>
       </div>
     </header>
   );

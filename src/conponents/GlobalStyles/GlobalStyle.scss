@@ -5,6 +5,7 @@
     --default-layout-header-height: 60px;
     --default-layout-width: 1150px;
     --text-color: #333;
+    --primary-color: rgba(254, 44, 85, 1.0);
 }
 
 html {
@@ -23,6 +24,13 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     color: var(--text-color);
+}
+
+button,
+input,
+[tabindex] {
+    outline: none;
+    border: none;
 }
 
 a[href] {
