@@ -20,7 +20,6 @@
         }
         .headerCenterContainer {
             position: relative;
-            width: 361px;
             height: 48px;
             
             .headerSearchForm {
@@ -94,11 +93,25 @@
                 }
             }
         }
+        .headerCenterContainer, 
+        .box-result {
+            width: 361px;
+        }
+
         .headerRightContainer {
             width: 272px;
             height: 36px;
         }
     }
+}
+
+.search-title {
+    height: 30px;
+    padding: 5px 12px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: rgba(22, 24, 35, 0.5);
 }
 
 .close,
