@@ -11,24 +11,38 @@ function Button({
     onClick, 
     primary=false, 
     outline=false, 
+    disabled=false,
     small=false, 
     large=false, 
+    text=false,
+    rounded=false,
     children, 
     ...passProps 
 }) {
     //passProps để lấy những prop còn lại không được nêu ở trên 
-    console.log(small);
     let Type = 'button';
     const classes = cx('wrapper', {
         primary,
         //Khi truyền prop primary vào thì class primary sẽ tự thêm vào
         outline,
         small,
-        large
+        large,
+        text,
+        rounded,
+        disabled
     })
     const props = {
+        onClick,
         ...passProps,
     };
+
+    if(disabled) {
+        Object.keys(props).forEach(key => {
+            if(key.startsWith('on') && typeof props[key] === 'function') {
+                delete props[key];
+            }
+        })
+    }
 
     if(href) {
         Type = 'a';

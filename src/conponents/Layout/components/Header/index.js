@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircleXmark,
   faMagnifyingGlass,
+  faPlus,
   faSpinner,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -143,6 +144,10 @@ function Header() {
         </Tippy>
 
         <div className={cx("headerRightContainer")}>
+            <Button text to="/upload">
+              <FontAwesomeIcon icon={faPlus} className={cx('uploadIcon')}/>
+              Tải lên
+            </Button>
           <Button primary>
             Đăng nhập
           </Button>
