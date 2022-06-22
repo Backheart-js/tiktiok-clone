@@ -48,13 +48,14 @@ function Button({
         Type = 'a';
         props.href = href;
     }
-    else if(onClick) {
-        props.onClick = onClick;
-    }
     else if(to) {
         Type = Link;
         props.to = to;
     }
+    else if(onClick) {
+        props.onClick = onClick;
+    }
+    
 
     return (
         <Type className={classes} {...props}>

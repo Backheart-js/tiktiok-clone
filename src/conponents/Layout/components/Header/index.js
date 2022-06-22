@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faCircleQuestion,
   faCircleXmark,
+  faEarthAsia,
+  faEllipsisVertical,
+  faKeyboard,
   faMagnifyingGlass,
   faPlus,
   faSpinner,
@@ -13,8 +17,38 @@ import styles from "./Header.module.scss";
 import { Wrapper as PopperWrapper } from "~/conponents/Popper";
 import AccountItem from "~/conponents/AccountItem";
 import Button from "~/conponents/Button";
+import Menu from "~/conponents/Popper/Menu";
 
 const cx = classNames.bind(styles);
+
+const MENU_ITEMS = [
+  {
+    icon: <FontAwesomeIcon icon={faEarthAsia}/>,
+    title: "Tiếng Việt",
+    children: {
+      title: "Ngôn ngữ",
+      data: [
+        {
+          code: "vi",
+          title: "Tiếng Việt"
+        },
+        {
+          code: "en",
+          title: "English"
+        }
+      ]
+    }
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCircleQuestion}/>,
+    title: "Phản hồi và trợ giúp",
+    to: "/feedback"
+  },
+  {
+    icon: <FontAwesomeIcon icon={faKeyboard}/>,
+    title: "Phím tắt trên bàn phím"
+  }
+]
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -144,13 +178,18 @@ function Header() {
         </Tippy>
 
         <div className={cx("headerRightContainer")}>
-            <Button text to="/upload">
-              <FontAwesomeIcon icon={faPlus} className={cx('uploadIcon')}/>
-              Tải lên
-            </Button>
+          <Button text to="/upload">
+            <FontAwesomeIcon icon={faPlus} className={cx('uploadIcon')}/>
+            Tải lên
+          </Button>
           <Button primary>
             Đăng nhập
           </Button>
+          <Menu items={MENU_ITEMS}>
+            <button className={cx("moreBtn")}>
+              <FontAwesomeIcon icon={faEllipsisVertical} className={cx('moreIcon')}/>
+            </button>
+          </Menu>
         </div>
       </div>
     </header>
