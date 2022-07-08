@@ -139,6 +139,30 @@
     margin-right: 8px;
 }
 
+.messageBtn,
+.notiBtn {
+    width: 40px;
+    height: 32px;
+    padding: 0 4px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.messageIcon,
+.notiIcon {
+    color: #161823;
+    font-size: 2.2rem;
+}
+
+.userButton {
+    
+}
+.userImg {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
 .moreBtn {
     width: 2rem;
     padding: 4px 8px;

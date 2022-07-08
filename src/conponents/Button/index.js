@@ -17,11 +17,13 @@ function Button({
     text=false,
     rounded=false,
     children, 
+    className,
     ...passProps 
 }) {
     //passProps để lấy những prop còn lại không được nêu ở trên 
     let Type = 'button';
     const classes = cx('wrapper', {
+        [className]: className,
         primary,
         //Khi truyền prop primary vào thì class primary sẽ tự thêm vào
         outline,
@@ -29,7 +31,8 @@ function Button({
         large,
         text,
         rounded,
-        disabled
+        disabled,
+        ...passProps
     })
     const props = {
         onClick,

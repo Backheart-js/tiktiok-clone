@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faArrowRightToBracket,
   faCircleQuestion,
   faCircleXmark,
+  faCoins,
   faEarthAsia,
   faEllipsisVertical,
+  faEnvelope,
+  faGear,
   faKeyboard,
   faMagnifyingGlass,
+  faPaperPlane,
   faPlus,
   faSpinner,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-import Tippy from "@tippyjs/react";
+import HeadlessTippy from "@tippyjs/react/headless"
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
 import { Wrapper as PopperWrapper } from "~/conponents/Popper";
@@ -48,7 +56,34 @@ const MENU_ITEMS = [
     icon: <FontAwesomeIcon icon={faKeyboard}/>,
     title: "Phím tắt trên bàn phím"
   }
+];
+
+const user_Items = [
+  {
+    icon: <FontAwesomeIcon icon={faUser}/>,
+    title: "Xem hồ sơ",
+    to: "/"
+  },
+  {
+    icon: <FontAwesomeIcon icon={faCoins}/>,
+    title: "Nhận xu",
+    to: "/"
+  },
+  {
+    icon: <FontAwesomeIcon icon={faGear}/>,
+    title: "Cài đặt",
+    to: "/setting"
+  },
+  ...MENU_ITEMS,
+  {
+    icon: <FontAwesomeIcon icon={faArrowRightToBracket}/>,
+    title: "Đăng xuất",
+    to: "/setting",
+    separate: true
+  }
 ]
+
+const currentUser = true;
 
 function Header() {
   const [searchResult, setSearchResult] = useState([]);
@@ -58,6 +93,10 @@ function Header() {
       setSearchResult([]);
     }, 3000);
   }, []);
+
+  const handleMenuChange = (menuItem) => {
+    console.log(menuItem);
+  }
 
   return (
     <header className={cx("wrapper")}>
@@ -138,7 +177,7 @@ function Header() {
           </svg>
         </a>
 
-        <Tippy
+        <HeadlessTippy
           // Tìm kiếm thì sẽ xổ ra kết quả
           interactive={true}
           visible={searchResult.length > 0}
@@ -175,20 +214,44 @@ function Header() {
               </button>
             </form>
           </div>
-        </Tippy>
+        </HeadlessTippy>
 
         <div className={cx("headerRightContainer")}>
           <Button text to="/upload">
             <FontAwesomeIcon icon={faPlus} className={cx('uploadIcon')}/>
             Tải lên
           </Button>
-          <Button primary>
-            Đăng nhập
-          </Button>
-          <Menu items={MENU_ITEMS}>
-            <button className={cx("moreBtn")}>
-              <FontAwesomeIcon icon={faEllipsisVertical} className={cx('moreIcon')}/>
-            </button>
+          {currentUser ? (
+            <>
+              <Tippy content="Tin nhắn">
+                <button className={cx('messageBtn')} to="/message">
+                  <FontAwesomeIcon className={cx('messageIcon')} icon={faPaperPlane}/>
+                </button>
+              </Tippy>
+              <Tippy content="Thông báo">
+                <button className={cx('notiBtn')} to="/notification">
+                  <FontAwesomeIcon className={cx('notiIcon')} icon={faEnvelope}/>
+                </button>
+              </Tippy>
+            </>
+            
+          ) : (
+            <>
+              <Button primary>
+                Đăng nhập
+              </Button>
+            </>
+          )}
+          <Menu menuButton items={ currentUser ? user_Items : MENU_ITEMS} onChange={handleMenuChange}>
+            {currentUser ? (
+              <button className={cx("userButton")}>
+                <img className={cx("userImg")} src="https://lh3.googleusercontent.com/ogw/ADea4I5N2HVapvZCflyDzqGYuga4FJZPDQmQ4iN4Yvq5=s32-c-mo"/>
+              </button>
+            ) : (
+              <button className={cx("moreBtn")}>
+                <FontAwesomeIcon icon={faEllipsisVertical} className={cx('moreIcon')}/>
+              </button>
+            )}
           </Menu>
         </div>
       </div>
