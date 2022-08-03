@@ -26,6 +26,8 @@ import { Wrapper as PopperWrapper } from "~/conponents/Popper";
 import AccountItem from "~/conponents/AccountItem";
 import Button from "~/conponents/Button";
 import Menu from "~/conponents/Popper/Menu";
+import { MessageIcon, NotificationIcon } from "~/conponents/Icons";
+import Image from "~/conponents/Image";
 
 const cx = classNames.bind(styles);
 
@@ -225,16 +227,15 @@ function Header() {
             <>
               <Tippy content="Tin nhắn">
                 <button className={cx('messageBtn')} to="/message">
-                  <FontAwesomeIcon className={cx('messageIcon')} icon={faPaperPlane}/>
+                  <MessageIcon className={'messageIcon'} />
                 </button>
               </Tippy>
               <Tippy content="Thông báo">
                 <button className={cx('notiBtn')} to="/notification">
-                  <FontAwesomeIcon className={cx('notiIcon')} icon={faEnvelope}/>
+                  <NotificationIcon className={'notiIcon'}/>
                 </button>
               </Tippy>
-            </>
-            
+            </>          
           ) : (
             <>
               <Button primary>
@@ -242,10 +243,10 @@ function Header() {
               </Button>
             </>
           )}
-          <Menu menuButton items={ currentUser ? user_Items : MENU_ITEMS} onChange={handleMenuChange}>
+          <Menu items={ currentUser ? user_Items : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
               <button className={cx("userButton")}>
-                <img className={cx("userImg")} src="https://lh3.googleusercontent.com/ogw/ADea4I5N2HVapvZCflyDzqGYuga4FJZPDQmQ4iN4Yvq5=s32-c-mo"/>
+                <Image className={cx("userImg")} src="https://lh3.googleusercontent.com/ogw/ADea4I5N2HVapvZCflyDzqGYuga4FJZPDQmQ4iN4Yvq5=s32-c-mo" />
               </button>
             ) : (
               <button className={cx("moreBtn")}>

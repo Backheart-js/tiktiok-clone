@@ -22,7 +22,7 @@ function Menu({ children, items, onChange = defaultFn }) {
       const isParent = !!item.children;
 
       return (
-        <MenuItem menuButton data={item} key={index} onClick={() => {
+        <MenuItem data={item} key={index} onClick={() => {
           if (isParent) {
             setHistory(prev => [...prev, item.children])
           }
@@ -37,8 +37,7 @@ function Menu({ children, items, onChange = defaultFn }) {
   return (
     <Tippy
         interactive
-        visible
-        // delay={[0, 700]}
+        delay={[0, 700]}
         placement="bottom-end"
         render={(attrs) => (
             <div className={cx("box-menu")} tabIndex="-1" {...attrs}>
