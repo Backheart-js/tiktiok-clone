@@ -3,31 +3,24 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowRightToBracket,
   faCircleQuestion,
-  faCircleXmark,
   faCoins,
   faEarthAsia,
   faEllipsisVertical,
-  faEnvelope,
   faGear,
   faKeyboard,
-  faMagnifyingGlass,
-  faPaperPlane,
   faPlus,
-  faSpinner,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 
-import HeadlessTippy from "@tippyjs/react/headless"
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import { Wrapper as PopperWrapper } from "~/conponents/Popper";
-import AccountItem from "~/conponents/AccountItem";
 import Button from "~/conponents/Button";
 import Menu from "~/conponents/Popper/Menu";
 import { MessageIcon, NotificationIcon } from "~/conponents/Icons";
 import Image from "~/conponents/Image";
+import Search from "../Search/input";
 
 const cx = classNames.bind(styles);
 
@@ -88,14 +81,6 @@ const user_Items = [
 const currentUser = true;
 
 function Header() {
-  const [searchResult, setSearchResult] = useState([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setSearchResult([]);
-    }, 3000);
-  }, []);
-
   const handleMenuChange = (menuItem) => {
     console.log(menuItem);
   }
@@ -179,44 +164,7 @@ function Header() {
           </svg>
         </a>
 
-        <HeadlessTippy
-          // Tìm kiếm thì sẽ xổ ra kết quả
-          interactive={true}
-          visible={searchResult.length > 0}
-          render={(attrs) => (
-            <div className={cx("box-result")} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <div className={cx("search-title")}>Tài khoản</div>
-
-                <AccountItem/>
-                <AccountItem/>
-                <AccountItem/>
-                <AccountItem/>
-                <AccountItem/>
-              </PopperWrapper>
-            </div>
-          )}
-        >
-          <div className={cx("headerCenterContainer")}>
-            <form className={cx("headerSearchForm")} action="search">
-              <input
-                type="text"
-                className={cx("headerSearchInput")}
-                placeholder="Tìm kiếm tài khoản và video"
-              />
-              <button className={cx("close")}>
-                <FontAwesomeIcon icon={faCircleXmark} />
-              </button>
-              <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />
-              <button className={cx("headerSearchBtn")}>
-                <FontAwesomeIcon
-                  className={cx("searchIcon")}
-                  icon={faMagnifyingGlass}
-                />
-              </button>
-            </form>
-          </div>
-        </HeadlessTippy>
+        <Search />
 
         <div className={cx("headerRightContainer")}>
           <Button text to="/upload">
@@ -230,8 +178,9 @@ function Header() {
                   <MessageIcon className={'messageIcon'} />
                 </button>
               </Tippy>
-              <Tippy content="Thông báo">
+              <Tippy content="Hộp thư">
                 <button className={cx('notiBtn')} to="/notification">
+                  <span className={cx('notiLabel')}>99+</span>
                   <NotificationIcon className={'notiIcon'}/>
                 </button>
               </Tippy>
