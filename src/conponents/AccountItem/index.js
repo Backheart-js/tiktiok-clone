@@ -8,21 +8,25 @@ import Image from '../Image';
 
 const cx = classNames.bind(styles);
 
-function AccountItem() {
+function AccountItem({ data, ...props }) {
   return (
-    <div className={cx('wrapper')}>
-        <Image className={cx('avatar')} src="https://lh3.googleusercontent.com/ogw/ADea4I5N2HVapvZCflyDzqGYuga4FJZPDQmQ4iN4Yvq5=s32-c-mo" alt='avatar' />
+    <a href={`/@${data.nickname}`} key={props.key} className={cx('wrapper')}>
+        <Image 
+          className={cx('avatar')} 
+          src={data.avatar} 
+          alt={data.full_name} 
+        />
         <div className={cx('content')}>
             <div className={cx('name-wrapper')}>
-                <h4 className={cx('name')}>binhhighend29</h4>
-                <FontAwesomeIcon icon={faCheckCircle} className={cx('icon')}/>
+                <h4 className={cx('name')}>{data.full_name}</h4>
+                {data.tick && <FontAwesomeIcon icon={faCheckCircle} className={cx('icon')}/>}
             </div>
             <p className={cx('user-name')}>
-                binhnguyen2912
+                {data.nickname}
             </p>
         </div>
 
-    </div>
+    </a>
   )
 }
 

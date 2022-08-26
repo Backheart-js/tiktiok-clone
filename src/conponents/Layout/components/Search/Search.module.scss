@@ -76,6 +76,15 @@
 .headerCenterContainer, 
 .box-result {
     width: 361px;
+
+    .search-title {
+        height: 30px;
+        padding: 5px 16px;
+        font-size: 1.6rem;
+        line-height: 20px;
+        font-weight: 600;
+        color: rgba(22, 24, 35, 0.5);
+    }
 }
 
 .close,
@@ -89,5 +98,18 @@
 
     &:hover {
         cursor: pointer;
+    }
+}
+
+.loading {
+    animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }

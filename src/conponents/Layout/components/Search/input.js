@@ -19,6 +19,7 @@ function Search() {
     const [searchResult, setSearchResult] = useState([]); //Kết quả tìm kiếm trả về, mặc định là 1 mảng
     const [searchValue, setSearchValue] = useState(''); //Text ở trong input, dùng two ways binding
     const [showResult, setShowResult] = useState(true); //Trạng thái ẩn/hiện của tippy kết quả tìm kiếm
+    const [loading, setLoading] = useState(false); //
 
     const handleClickClose = () => { //Xử lý khi click vào icon close
         setSearchValue('');
@@ -30,10 +31,21 @@ function Search() {
     }
 
     useEffect(() => {
-      setTimeout(() => {
-        setSearchResult([1]);
-      }, 1000);
-    }, []);
+      if(!searchValue.trim()) {
+        setSearchResult([])
+        return;
+      }
+
+      setLoading(true);
+
+      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+        .then(res => res.json())
+        .then(res => {
+          setSearchResult(res.data);
+          setLoading(false);
+        })
+
+    }, [searchValue]);
 
   return (
     <HeadlessTippy
@@ -44,12 +56,9 @@ function Search() {
             <div className={cx("box-result")} tabIndex="-1" {...attrs}>
               <PopperWrapper>
                 <div className={cx("search-title")}>Tài khoản</div>
-
-                <AccountItem/>
-                <AccountItem/>
-                <AccountItem/>
-                <AccountItem/>
-                <AccountItem/>
+                {searchResult.map(result => (
+                  <AccountItem key={result.id} data={result}/>
+                ))}
               </PopperWrapper>
             </div>
           )}
@@ -69,12 +78,12 @@ function Search() {
                 onFocus={() => setShowResult(true)}
               />
               {
-                !!searchValue && 
+                !!searchValue && !loading && 
                 <button className={cx("close")} onClick={() => handleClickClose()}>
                     <FontAwesomeIcon icon={faCircleXmark} />
                 </button>
               }
-              {/* <FontAwesomeIcon className={cx("loading")} icon={faSpinner} /> */}
+              {(loading && !!searchValue) && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />}
               <button className={cx("headerSearchBtn")}>
                 <SearchIcon className={cx("searchIcon")} />
               </button>
