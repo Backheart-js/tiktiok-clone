@@ -11,6 +11,7 @@ import { Wrapper as PopperWrapper } from "~/conponents/Popper";
 import AccountItem from "~/conponents/AccountItem";
 import styles from "./Search.module.scss";
 import { SearchIcon } from '~/conponents/Icons';
+import { useDebounce } from '~/hooks';
 const cx = classNames.bind(styles);
 
 function Search() {
@@ -20,6 +21,8 @@ function Search() {
     const [searchValue, setSearchValue] = useState(''); //Text ở trong input, dùng two ways binding
     const [showResult, setShowResult] = useState(true); //Trạng thái ẩn/hiện của tippy kết quả tìm kiếm
     const [loading, setLoading] = useState(false); //
+
+    const debounce = useDebounce(searchValue, 700);
 
     const handleClickClose = () => { //Xử lý khi click vào icon close
         setSearchValue('');
@@ -31,21 +34,21 @@ function Search() {
     }
 
     useEffect(() => {
-      if(!searchValue.trim()) {
+      if(!debounce.trim()) {
         setSearchResult([])
         return;
       }
 
       setLoading(true);
 
-      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(searchValue)}&type=less`)
+      fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
         .then(res => res.json())
         .then(res => {
           setSearchResult(res.data);
           setLoading(false);
         })
 
-    }, [searchValue]);
+    }, [debounce]);
 
   return (
     <HeadlessTippy
