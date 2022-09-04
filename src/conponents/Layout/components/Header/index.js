@@ -21,6 +21,7 @@ import Menu from "~/conponents/Popper/Menu";
 import { MessageIcon, NotificationIcon } from "~/conponents/Icons";
 import Image from "~/conponents/Image";
 import Search from "../Search/input";
+import routes from "~/config/routes";
 
 const cx = classNames.bind(styles);
 
@@ -88,7 +89,7 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <a className={cx("tiktok-logo")} href="/">
+        <a className={cx("tiktok-logo")} href={routes.home}>
           <svg height="42" width="118" alt="TikTok">
             <g clipPath="url(#clip0)">
               <path

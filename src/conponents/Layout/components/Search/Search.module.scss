@@ -37,6 +37,8 @@
             -moz-appearance: textfield;
             -ms-appearance: textfield;
             appearance: textfield;
+            font-family: var(--font-family);
+
         } 
         .headerSearchInput:not(:placeholder-shown) ~ .headerSearchBtn {
             color: rgba(22, 24, 35, 0.7);

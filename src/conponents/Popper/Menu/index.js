@@ -12,7 +12,7 @@ const defaultFn = () => {
 
 }
 
-function Menu({ children, items, onChange = defaultFn }) {
+function Menu({ children, items, onChange = defaultFn, hideOnClick = false }) {
 
   const [history, setHistory] = useState([{ data: items }]);
   const currentItems = history[history.length - 1];
@@ -39,6 +39,7 @@ function Menu({ children, items, onChange = defaultFn }) {
         interactive
         delay={[0, 700]}
         placement="bottom-end"
+        hideOnClick={hideOnClick}
         render={(attrs) => (
             <div className={cx("box-menu")} tabIndex="-1" {...attrs}>
             <PopperWrapper>

@@ -25,6 +25,12 @@ function Search() {
 
     const debounce = useDebounce(searchValue, 700);
 
+    const handleOnChangeInput = (e) => {
+      const searchValueInput = e.target.value;
+      if (!searchValueInput.startsWith(' '))
+        setSearchValue(searchValueInput);
+      }
+
     const handleClickClose = () => { //Xử lý khi click vào icon close
         setSearchValue('');
         inputRef.current.focus();
@@ -87,9 +93,7 @@ function Search() {
                 className={cx("headerSearchInput")}
                 placeholder="Tìm kiếm tài khoản và video"
                 value={searchValue}
-                onChange={(e) => {
-                    setSearchValue(e.target.value);
-                }}
+                onChange={handleOnChangeInput}
                 onFocus={() => setShowResult(true)}
               />
               {
@@ -99,8 +103,8 @@ function Search() {
                 </button>
               }
               {(loading && !!searchValue) && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />}
-              <button className={cx("headerSearchBtn")}>
-                <SearchIcon className={cx("searchIcon")} />
+              <button className={cx("headerSearchBtn")} onMouseDown={(e) => e.preventDefault()}>
+                <SearchIcon className={cx("searchIcon")}/>
               </button>
             </form>
         </div>

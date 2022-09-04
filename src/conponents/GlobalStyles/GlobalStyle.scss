@@ -6,6 +6,7 @@
     --default-layout-width: 1150px;
     --text-color: #333;
     --primary-color: rgba(254, 44, 85, 1.0);
+    --font-family: 'ProximaNov', sans-serif;
 }
 
 html {
@@ -41,7 +42,7 @@ html {
 }
 
 body {
-    font-family: 'ProximaNov', sans-serif;
+    font-family: var(--font-family);
     font-size: 1.6rem;
     line-height: 1.5;
     color: var(--text-color);
