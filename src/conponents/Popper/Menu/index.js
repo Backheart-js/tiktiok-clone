@@ -43,10 +43,10 @@ function Menu({ children, items, onChange = defaultFn, hideOnClick = false }) {
         render={(attrs) => (
             <div className={cx("box-menu")} tabIndex="-1" {...attrs}>
             <PopperWrapper>
-              {history.length >= 2 && <MenuHeader title={currentItems.title} onBack={() => {
+              {history.length > 1 && <MenuHeader title={currentItems.title} onBack={() => {
                 setHistory(prev => prev.slice(0, prev.length - 1))
               }}/>}
-              {renderItems()}
+              <div className={cx("menu-body")}>{renderItems()}</div>
             </PopperWrapper>
             </div>
         )}

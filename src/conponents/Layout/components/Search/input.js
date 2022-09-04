@@ -69,46 +69,51 @@ function Search() {
     }, [debounce]);
 
   return (
-    <HeadlessTippy
-          // Tìm kiếm thì sẽ xổ ra kết quả
-          interactive={true}
-          visible={showResult && searchResult.length > 0}
-          render={(attrs) => (
-            <div className={cx("box-result")} tabIndex="-1" {...attrs}>
-              <PopperWrapper>
-                <div className={cx("search-title")}>Tài khoản</div>
-                {searchResult.map(result => (
-                  <AccountItem key={result.id} data={result}/>
-                ))}
-              </PopperWrapper>
-            </div>
-          )}
-          onClickOutside={handleHideResult}
-        >
-          <div className={cx("headerCenterContainer")}>
-            <form className={cx("headerSearchForm")} action="search">
-              <input
-                ref={inputRef}
-                type="text"
-                className={cx("headerSearchInput")}
-                placeholder="Tìm kiếm tài khoản và video"
-                value={searchValue}
-                onChange={handleOnChangeInput}
-                onFocus={() => setShowResult(true)}
-              />
-              {
-                !!searchValue && !loading && 
-                <button className={cx("close")} onClick={() => handleClickClose()}>
-                    <FontAwesomeIcon icon={faCircleXmark} />
+    /*
+      Using a wrapper <div> tag around the reference element solves this by creating a new parentNode context.
+    */
+    <div>
+      <HeadlessTippy
+            // Tìm kiếm thì sẽ xổ ra kết quả
+            interactive={true}
+            visible={showResult && searchResult.length > 0}
+            render={(attrs) => (
+              <div className={cx("box-result")} tabIndex="-1" {...attrs}>
+                <PopperWrapper>
+                  <div className={cx("search-title")}>Tài khoản</div>
+                  {searchResult.map(result => (
+                    <AccountItem key={result.id} data={result}/>
+                  ))}
+                </PopperWrapper>
+              </div>
+            )}
+            onClickOutside={handleHideResult}
+          >
+            <div className={cx("headerCenterContainer")}>
+              <form className={cx("headerSearchForm")} action="search">
+                <input
+                  ref={inputRef}
+                  type="text"
+                  className={cx("headerSearchInput")}
+                  placeholder="Tìm kiếm tài khoản và video"
+                  value={searchValue}
+                  onChange={handleOnChangeInput}
+                  onFocus={() => setShowResult(true)}
+                />
+                {
+                  !!searchValue && !loading && 
+                  <button className={cx("close")} onClick={() => handleClickClose()}>
+                      <FontAwesomeIcon icon={faCircleXmark} />
+                  </button>
+                }
+                {(loading && !!searchValue) && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />}
+                <button className={cx("headerSearchBtn")} onMouseDown={(e) => e.preventDefault()}>
+                  <SearchIcon className={cx("searchIcon")}/>
                 </button>
-              }
-              {(loading && !!searchValue) && <FontAwesomeIcon className={cx("loading")} icon={faSpinner} />}
-              <button className={cx("headerSearchBtn")} onMouseDown={(e) => e.preventDefault()}>
-                <SearchIcon className={cx("searchIcon")}/>
-              </button>
-            </form>
-        </div>
-    </HeadlessTippy>
+              </form>
+          </div>
+      </HeadlessTippy>
+    </div>
   )
 }
 

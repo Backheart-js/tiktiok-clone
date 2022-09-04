@@ -2,28 +2,33 @@
     width: 244px;
     padding: 8px 0;
 
-    .menu-item {
-        width: 100%;
-        border-radius: 0;
-        margin-left: 0px;
-        padding: 11px 16px;
-        justify-content: start;
-        line-height: 1.8rem;
+    .menu-body {
+        overflow-y: auto;
+
+        .menu-item {
+            width: 100%;
+            border-radius: 0;
+            margin-left: 0px;
+            padding: 11px 16px;
+            justify-content: start;
+            line-height: 1.8rem;
+        
+            &.separate {
+                border-top: 1px solid rgba(22, 24, 35, 0.12);
+            }
     
-        &.separate {
-            border-top: 1px solid rgba(22, 24, 35, 0.12);
+            &:hover {
+                background-color: rgba(22, 24, 35, 0.03);
+            }
+    
         }
-
-        &:hover {
-            background-color: rgba(22, 24, 35, 0.03);
-        }
-
     }
 }
 
 .header {
     position: relative;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     width: 100%;
     height: 5rem;

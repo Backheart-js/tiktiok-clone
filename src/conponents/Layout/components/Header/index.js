@@ -39,7 +39,7 @@ const MENU_ITEMS = [
         {
           code: "en",
           title: "English"
-        }
+        },
       ]
     }
   },
