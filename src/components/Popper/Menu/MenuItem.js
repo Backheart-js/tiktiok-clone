@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Button from '~/conponents/Button';
+import Button from '~/components/Button';
 import styles from "./Menu.module.scss";
 import classNames from "classnames/bind";
 

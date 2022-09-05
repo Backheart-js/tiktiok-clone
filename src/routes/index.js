@@ -1,17 +1,18 @@
+import config from "~/config";
+
 // Layout
-import { HeaderOnly } from "~/conponents/Layout";
+import { HeaderOnly } from "~/layouts";
 
 import Home from "~/pages/Home";
 import Following from "~/pages/Following";
 import Profile from "~/pages/Profile";
 import Upload from "~/pages/Upload";
-import routes from "~/config/routes";
 
 const publicRoutes = [
-    {path: routes.home, component: Home},
-    {path: routes.following, component: Following},
-    {path: routes.profile, component: Profile, layout: HeaderOnly},
-    {path: routes.upload, component: Upload, layout: HeaderOnly}
+    {path: config.routes.home, component: Home},
+    {path: config.routes.following, component: Following},
+    {path: config.routes.profile, component: Profile, layout: HeaderOnly},
+    {path: config.routes.upload, component: Upload, layout: HeaderOnly}
 ];
 
 const privateRoute = [

@@ -16,12 +16,12 @@ import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import classNames from "classnames/bind";
 import styles from "./Header.module.scss";
-import Button from "~/conponents/Button";
-import Menu from "~/conponents/Popper/Menu";
-import { MessageIcon, NotificationIcon } from "~/conponents/Icons";
-import Image from "~/conponents/Image";
+import Button from "~/components/Button";
+import Menu from "~/components/Popper/Menu";
+import { MessageIcon, NotificationIcon } from "~/components/Icons";
+import Image from "~/components/Image";
 import Search from "../Search/input";
-import routes from "~/config/routes";
+import config from "~/config";
 
 const cx = classNames.bind(styles);
 
@@ -89,7 +89,7 @@ function Header() {
   return (
     <header className={cx("wrapper")}>
       <div className={cx("inner")}>
-        <a className={cx("tiktok-logo")} href={routes.home}>
+        <a className={cx("tiktok-logo")} href={config.routes.home}>
           <svg height="42" width="118" alt="TikTok">
             <g clipPath="url(#clip0)">
               <path
