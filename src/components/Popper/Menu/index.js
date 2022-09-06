@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Tippy from '@tippyjs/react/headless';
 import classNames from "classnames/bind";
 
@@ -12,7 +13,7 @@ const defaultFn = () => {
 
 }
 
-function Menu({ children, items, onChange = defaultFn, hideOnClick = false }) {
+function Menu({ children, items = [], onChange = defaultFn, hideOnClick = false }) {
 
   const [history, setHistory] = useState([{ data: items }]);
   const currentItems = history[history.length - 1];
@@ -55,6 +56,13 @@ function Menu({ children, items, onChange = defaultFn, hideOnClick = false }) {
         {children}
     </Tippy>
   )
+}
+
+Menu.propTypes = {
+  children: PropTypes.node.isRequired,
+  items: PropTypes.array.isRequired,
+  onChange: PropTypes.func,
+  hideOnClick: PropTypes.bool,
 }
 
 export default Menu

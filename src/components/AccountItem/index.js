@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
@@ -25,9 +26,12 @@ function AccountItem({ data, ...props }) {
                 {data.nickname}
             </p>
         </div>
-
     </a>
   )
+}
+
+AccountItem.propTypes = {
+  data: PropTypes.object.isRequired,
 }
 
 export default AccountItem
