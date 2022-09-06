@@ -20,7 +20,7 @@ import Button from "~/components/Button";
 import Menu from "~/components/Popper/Menu";
 import { MessageIcon, NotificationIcon } from "~/components/Icons";
 import Image from "~/components/Image";
-import Search from "../Search/input";
+import Search from "../Search";
 import config from "~/config";
 
 const cx = classNames.bind(styles);
