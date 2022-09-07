@@ -23,7 +23,7 @@ function Search() {
     const [showResult, setShowResult] = useState(true); //Trạng thái ẩn/hiện của tippy kết quả tìm kiếm
     const [loading, setLoading] = useState(false); //
 
-    const debounce = useDebounce(searchValue, 700);
+    const debounceValue = useDebounce(searchValue, 700);
 
     const handleOnChangeInput = (e) => {
       const searchValueInput = e.target.value;
@@ -41,7 +41,7 @@ function Search() {
     }
 
     useEffect(() => {
-      if(!debounce.trim()) {
+      if(!debounceValue.trim()) {
         setSearchResult([])
         return;
       }
@@ -49,24 +49,14 @@ function Search() {
       
       const fetchApi = async () => {
         setLoading(true);
-        const result = await searchService.search(debounce);
+        const result = await searchService.search(debounceValue);
         setSearchResult(result.data);
         setLoading(false);
       };
 
       fetchApi();
-      // request.get('users/search', {
-      //     params: {
-      //       q: debounce,
-      //       type: 'less'
-      //     }
-      //   })
-      //   .then(res => {
-      //     setSearchResult(res.data);
-      //     setLoading(false);
-      //   })
 
-    }, [debounce]);
+    }, [debounceValue]);
 
   return (
     /*
